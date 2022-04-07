@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: {{ include "postgresql-ha.postgresql" . }}-metrics
   labels: {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: postgresql
+    app.kubernetes.io/component: metrics
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
@@ -39,5 +39,4 @@ spec:
       nodePort: null
       {{- end }}
   selector: {{- include "common.labels.matchLabels" . | nindent 4 }}
-    app.kubernetes.io/component: postgresql
 {{- end }}
